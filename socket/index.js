@@ -4,7 +4,7 @@ const config = require('../config');
 module.exports = function setupSocket(io) {
   // Middleware для аутентификации пользователей через WebSocket
   io.use((socket, next) => {
-    const token = socket.handshake.auth.token;
+    const token = socket.handshake.auth.token?? socket.handshake.headers['authorization']?.split(' ')[1];
     
     if (!token) {
       return next(new Error('Требуется аутентификация'));

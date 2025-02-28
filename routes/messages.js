@@ -47,6 +47,7 @@ router.post('/', auth, (req, res) => {
     `SELECT id FROM chats WHERE id = ? AND (teacher_id = ? OR student_id = ?)`,
     [chatId, userId, userId],
     (err, chat) => {
+      console.log(err, chat);
       if (err) return res.status(500).send('Ошибка сервера');
       if (!chat) return res.status(403).send('Доступ запрещен');
       
@@ -62,6 +63,7 @@ router.post('/', auth, (req, res) => {
             `SELECT name FROM users WHERE id = ?`, 
             [userId],
             (err, user) => {
+              console.log(err, user);
               if (err) return res.status(500).send('Ошибка сервера');
               
               const messageData = {
