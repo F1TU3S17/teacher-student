@@ -9,7 +9,9 @@ const authRoutes = require('../routes/auth');
 const chatRoutes = require('../routes/chats');
 const messageRoutes = require('../routes/messages');
 const lessonRoutes = require('../routes/lessons');
+const filesRoutes = require('../routes/files');
 const setupSocket = require('../socket/index');
+
 
 const app = express();
 const server = http.createServer(app);
@@ -28,6 +30,7 @@ app.use('/auth', authRoutes);
 app.use('/chats', chatRoutes);
 app.use('/messages', messageRoutes);
 app.use('/lessons', lessonRoutes);
+app.use('/files', filesRoutes); // Подключаем маршрут для работы с файлами
 
 // Настройка WebSocket
 setupSocket(io);

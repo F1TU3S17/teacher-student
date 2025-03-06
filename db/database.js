@@ -74,6 +74,20 @@ db.serialize(() => {
     FOREIGN KEY (student_id) REFERENCES users (id),
     UNIQUE(lesson_id, student_id)
   )`);
+  
+  // Таблица для хранения файлов
+  db.run(`CREATE TABLE IF NOT EXISTS files (
+    id INTEGER PRIMARY KEY, 
+    lesson_id INTEGER,
+    filename TEXT,
+    original_name TEXT,
+    mime_type TEXT,
+    size INTEGER,
+    uploaded_by INTEGER,
+    created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (lesson_id) REFERENCES lessons (id),
+    FOREIGN KEY (uploaded_by) REFERENCES users (id)
+  )`);
 });
 
 module.exports = db;
