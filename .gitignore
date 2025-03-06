@@ -1,0 +1,18 @@
+# Dependencies
+node_modules/
+
+# Логи
+logs
+*.log
+npm-debug.log*
+
+# Директория с локальными env переменными
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# Кэши и базы данных
+.DS_Store
+Thumbs.db
